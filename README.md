@@ -1,4 +1,4 @@
-# Golang bindings for the Telegram Bot API
+# Golang bindings for the Bale & Telegram Bot API
 
 [![GoDoc](https://godoc.org/github.com/go-telegram-bot-api/telegram-bot-api?status.svg)](http://godoc.org/github.com/go-telegram-bot-api/telegram-bot-api)
 [![Travis](https://travis-ci.org/go-telegram-bot-api/telegram-bot-api.svg)](https://travis-ci.org/go-telegram-bot-api/telegram-bot-api)
@@ -33,7 +33,7 @@ import (
 )
 
 func main() {
-	bot, err := tgbotapi.NewBotAPI("MyAwesomeBotToken")
+	bot, err := tgbotapi.NewBotAPI("MyAwesomeBotToken","tapi.bale.ai")
 	if err != nil {
 		log.Panic(err)
 	}
@@ -81,7 +81,7 @@ import (
 )
 
 func main() {
-	bot, err := tgbotapi.NewBotAPI("MyAwesomeBotToken")
+	bot, err := tgbotapi.NewBotAPI("MyAwesomeBotToken","tapi.bale.ai")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -111,7 +111,7 @@ func main() {
 ```
 
 If you need, you may generate a self signed certficate, as this requires
-HTTPS / TLS. The above example tells Telegram that this is your
+HTTPS / TLS. The above example tells Bale & Telegram that this is your
 certificate and that it should be trusted, even though it is not
 properly signed.
 
