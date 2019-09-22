@@ -18,7 +18,7 @@ you want to ask questions or discuss development.
 ## Example
 
 First, ensure the library is installed and up to date by running
-`go get -u github.com/go-telegram-bot-api/telegram-bot-api`.
+`go get -u github.com/ghiac/bale-bot-api`.
 
 This is a very simple bot that just displays any gotten updates,
 then replies it to that chat.
@@ -29,11 +29,15 @@ package main
 import (
 	"log"
 
-	"github.com/go-telegram-bot-api/telegram-bot-api"
+	"github.com/ghiac/bale-bot-api"
 )
 
 func main() {
-	bot, err := tgbotapi.NewBotAPI("MyAwesomeBotToken","tapi.bale.ai")
+//  Telegram bot
+//	bot, err := tgbotapi.NewBotAPI("MyAwesomeBotToken")
+
+//  Bale bot
+	bot, err := tgbotapi.NewBaleBotAPI("MyAwesomeBotToken")
 	if err != nil {
 		log.Panic(err)
 	}
@@ -77,11 +81,15 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/go-telegram-bot-api/telegram-bot-api"
+	"github.com/ghiac/bale-bot-api"
 )
 
 func main() {
-	bot, err := tgbotapi.NewBotAPI("MyAwesomeBotToken","tapi.bale.ai")
+//  Telegram bot
+//	bot, err := tgbotapi.NewBotAPI("MyAwesomeBotToken")
+
+//  Bale bot
+	bot, err := tgbotapi.NewBaleBotAPI("MyAwesomeBotToken")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -99,7 +107,7 @@ func main() {
 		log.Fatal(err)
 	}
 	if info.LastErrorDate != 0 {
-		log.Printf("Telegram callback failed: %s", info.LastErrorMessage)
+		log.Printf("Bale callback failed: %s", info.LastErrorMessage)
 	}
 	updates := bot.ListenForWebhook("/" + bot.Token)
 	go http.ListenAndServeTLS("0.0.0.0:8443", "cert.pem", "key.pem", nil)

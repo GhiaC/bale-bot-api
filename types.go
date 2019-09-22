@@ -370,13 +370,14 @@ type File struct {
 	FileID   string `json:"file_id"`
 	FileSize int    `json:"file_size"` // optional
 	FilePath string `json:"file_path"` // optional
+	Endpoint string `json:"endpoint"`  // optional
 }
 
 // Link returns a full path to the download URL for a File.
 //
 // It requires the Bot Token to create the link.
 func (f *File) Link(token string) string {
-	return fmt.Sprintf(FileEndpoint, token, f.FilePath)
+	return fmt.Sprintf(FileEndpoint, f.Endpoint, token, f.FilePath)
 }
 
 // ReplyKeyboardMarkup allows the Bot to set a custom keyboard.

@@ -21,12 +21,13 @@ import (
 
 // BotAPI allows you to interact with the Telegram Bot API.
 type BotAPI struct {
-	Token  string `json:"token"`
-	Debug  bool   `json:"debug"`
-	Buffer int    `json:"buffer"`
+	Token    string `json:"token"`
+	Endpoint string `json:"endpoint"`
+	Debug    bool   `json:"debug"`
+	Buffer   int    `json:"buffer"`
 
-	Self   User         `json:"-"`
-	Client *http.Client `json:"-"`
+	Self            User         `json:"-"`
+	Client          *http.Client `json:"-"`
 	shutdownChannel chan interface{}
 }
 
@@ -34,18 +35,26 @@ type BotAPI struct {
 //
 // It requires a token, provided by @BotFather on Telegram.
 func NewBotAPI(token string) (*BotAPI, error) {
-	return NewBotAPIWithClient(token, &http.Client{})
+	return NewBotAPIWithClient(token, "api.telegram.org", &http.Client{})
+}
+
+// NewBaleBotAPI creates a new BaleBotAPI instance.
+//
+// It requires a token, provided by @BotFather on Bale.
+func NewBaleBotAPI(token string) (*BotAPI, error) {
+	return NewBotAPIWithClient(token, "tapi.bale.ai", &http.Client{})
 }
 
 // NewBotAPIWithClient creates a new BotAPI instance
 // and allows you to pass a http.Client.
 //
 // It requires a token, provided by @BotFather on Telegram.
-func NewBotAPIWithClient(token string, client *http.Client) (*BotAPI, error) {
+func NewBotAPIWithClient(token, endpoint string, client *http.Client) (*BotAPI, error) {
 	bot := &BotAPI{
-		Token:  token,
-		Client: client,
-		Buffer: 100,
+		Token:           token,
+		Client:          client,
+		Endpoint:        endpoint,
+		Buffer:          100,
 		shutdownChannel: make(chan interface{}),
 	}
 
@@ -61,7 +70,7 @@ func NewBotAPIWithClient(token string, client *http.Client) (*BotAPI, error) {
 
 // MakeRequest makes a request to a specific endpoint with our token.
 func (bot *BotAPI) MakeRequest(endpoint string, params url.Values) (APIResponse, error) {
-	method := fmt.Sprintf(APIEndpoint, bot.Token, endpoint)
+	method := fmt.Sprintf(APIEndpoint, bot.Endpoint, bot.Token, endpoint)
 
 	resp, err := bot.Client.PostForm(method, params)
 	if err != nil {
@@ -186,7 +195,7 @@ func (bot *BotAPI) UploadFile(endpoint string, params map[string]string, fieldna
 		return APIResponse{}, errors.New(ErrBadFileType)
 	}
 
-	method := fmt.Sprintf(APIEndpoint, bot.Token, endpoint)
+	method := fmt.Sprintf(APIEndpoint, bot.Endpoint, bot.Token, endpoint)
 
 	req, err := http.NewRequest("POST", method, nil)
 	if err != nil {
@@ -390,9 +399,8 @@ func (bot *BotAPI) GetFile(config FileConfig) (File, error) {
 
 	var file File
 	json.Unmarshal(resp.Result, &file)
-
 	bot.debugLog("GetFile", v, file)
-
+	file.Endpoint = bot.Endpoint
 	return file, nil
 }
 
@@ -490,7 +498,7 @@ func (bot *BotAPI) GetUpdatesChan(config UpdateConfig) (UpdatesChannel, error) {
 				return
 			default:
 			}
-			
+
 			updates, err := bot.GetUpdates(config)
 			if err != nil {
 				log.Println(err)

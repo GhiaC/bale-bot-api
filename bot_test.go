@@ -8,7 +8,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/go-telegram-bot-api/telegram-bot-api"
+	"github.com/ghiac/bale-bot-api"
 )
 
 const (
@@ -26,7 +26,7 @@ const (
 )
 
 func getBot(t *testing.T) (*tgbotapi.BotAPI, error) {
-	bot, err := tgbotapi.NewBotAPI(TestToken)
+	bot, err := tgbotapi.NewBaleBotAPI(TestToken)
 	bot.Debug = true
 
 	if err != nil {
@@ -38,7 +38,7 @@ func getBot(t *testing.T) (*tgbotapi.BotAPI, error) {
 }
 
 func TestNewBotAPI_notoken(t *testing.T) {
-	_, err := tgbotapi.NewBotAPI("")
+	_, err := tgbotapi.NewBaleBotAPI("")
 
 	if err == nil {
 		t.Error(err)
