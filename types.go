@@ -131,44 +131,44 @@ func (c Chat) ChatConfig() ChatConfig {
 // almost anything.
 type Message struct {
 	MessageID             int                `json:"message_id"`
-	From                  *User              `json:"from"` // optional
+	From                  *User              `json:"from,omitempty"` // optional
 	Date                  int                `json:"date"`
 	Chat                  *Chat              `json:"chat"`
-	ForwardFrom           *User              `json:"forward_from"`            // optional
-	ForwardFromChat       *Chat              `json:"forward_from_chat"`       // optional
-	ForwardFromMessageID  int                `json:"forward_from_message_id"` // optional
-	ForwardDate           int                `json:"forward_date"`            // optional
-	ReplyToMessage        *Message           `json:"reply_to_message"`        // optional
-	EditDate              int                `json:"edit_date"`               // optional
-	Text                  string             `json:"text"`                    // optional
-	Entities              *[]MessageEntity   `json:"entities"`                // optional
-	Audio                 *Audio             `json:"audio"`                   // optional
-	Document              *Document          `json:"document"`                // optional
-	Animation             *ChatAnimation     `json:"animation"`               // optional
-	Game                  *Game              `json:"game"`                    // optional
-	Photo                 *[]PhotoSize       `json:"photo"`                   // optional
-	Sticker               *Sticker           `json:"sticker"`                 // optional
-	Video                 *Video             `json:"video"`                   // optional
-	VideoNote             *VideoNote         `json:"video_note"`              // optional
-	Voice                 *Voice             `json:"voice"`                   // optional
-	Caption               string             `json:"caption"`                 // optional
-	Contact               *Contact           `json:"contact"`                 // optional
-	Location              *Location          `json:"location"`                // optional
-	Venue                 *Venue             `json:"venue"`                   // optional
-	NewChatMembers        *[]User            `json:"new_chat_members"`        // optional
-	LeftChatMember        *User              `json:"left_chat_member"`        // optional
-	NewChatTitle          string             `json:"new_chat_title"`          // optional
-	NewChatPhoto          *[]PhotoSize       `json:"new_chat_photo"`          // optional
-	DeleteChatPhoto       bool               `json:"delete_chat_photo"`       // optional
-	GroupChatCreated      bool               `json:"group_chat_created"`      // optional
-	SuperGroupChatCreated bool               `json:"supergroup_chat_created"` // optional
-	ChannelChatCreated    bool               `json:"channel_chat_created"`    // optional
-	MigrateToChatID       int64              `json:"migrate_to_chat_id"`      // optional
-	MigrateFromChatID     int64              `json:"migrate_from_chat_id"`    // optional
-	PinnedMessage         *Message           `json:"pinned_message"`          // optional
-	Invoice               *Invoice           `json:"invoice"`                 // optional
-	SuccessfulPayment     *SuccessfulPayment `json:"successful_payment"`      // optional
-	PassportData          *PassportData      `json:"passport_data,omitempty"` // optional
+	ForwardFrom           *User              `json:"forward_from,omitempty"`            // optional
+	ForwardFromChat       *Chat              `json:"forward_from_chat,omitempty"`       // optional
+	ForwardFromMessageID  int                `json:"forward_from_message_id,omitempty"` // optional
+	ForwardDate           int                `json:"forward_date,omitempty"`            // optional
+	ReplyToMessage        *Message           `json:"reply_to_message,omitempty"`        // optional
+	EditDate              int                `json:"edit_date,omitempty"`               // optional
+	Text                  string             `json:"text,omitempty"`                    // optional
+	Entities              *[]MessageEntity   `json:"entities,omitempty"`                // optional
+	Audio                 *Audio             `json:"audio,omitempty"`                   // optional
+	Document              *Document          `json:"document,omitempty"`                // optional
+	Animation             *ChatAnimation     `json:"animation,omitempty"`               // optional
+	Game                  *Game              `json:"game,omitempty"`                    // optional
+	Photo                 *[]PhotoSize       `json:"photo,omitempty"`                   // optional
+	Sticker               *Sticker           `json:"sticker,omitempty"`                 // optional
+	Video                 *Video             `json:"video,omitempty"`                   // optional
+	VideoNote             *VideoNote         `json:"video_note,omitempty"`              // optional
+	Voice                 *Voice             `json:"voice,omitempty"`                   // optional
+	Caption               string             `json:"caption,omitempty"`                 // optional
+	Contact               *Contact           `json:"contact,omitempty"`                 // optional
+	Location              *Location          `json:"location,omitempty"`                // optional
+	Venue                 *Venue             `json:"venue,omitempty"`                   // optional
+	NewChatMembers        *[]User            `json:"new_chat_members,omitempty"`        // optional
+	LeftChatMember        *User              `json:"left_chat_member,omitempty"`        // optional
+	NewChatTitle          string             `json:"new_chat_title,omitempty"`          // optional
+	NewChatPhoto          *[]PhotoSize       `json:"new_chat_photo,omitempty"`          // optional
+	DeleteChatPhoto       bool               `json:"delete_chat_photo,omitempty"`       // optional
+	GroupChatCreated      bool               `json:"group_chat_created,omitempty"`      // optional
+	SuperGroupChatCreated bool               `json:"supergroup_chat_created,omitempty"` // optional
+	ChannelChatCreated    bool               `json:"channel_chat_created,omitempty"`    // optional
+	MigrateToChatID       int64              `json:"migrate_to_chat_id,omitempty"`      // optional
+	MigrateFromChatID     int64              `json:"migrate_from_chat_id,omitempty"`    // optional
+	PinnedMessage         *Message           `json:"pinned_message,omitempty"`          // optional
+	Invoice               *Invoice           `json:"invoice,omitempty"`                 // optional
+	SuccessfulPayment     *SuccessfulPayment `json:"successful_payment,omitempty"`      // optional
+	PassportData          *PassportData      `json:"passport_data,omitempty,omitempty"` // optional
 }
 
 // Time converts the message timestamp into a Time.
