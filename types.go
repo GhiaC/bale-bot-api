@@ -21,8 +21,8 @@ type APIResponse struct {
 
 // ResponseParameters are various errors that can be returned in APIResponse.
 type ResponseParameters struct {
-	MigrateToChatID int64 `json:"migrate_to_chat_id"` // optional
-	RetryAfter      int   `json:"retry_after"`        // optional
+	MigrateToChatID int64 `json:"migrate_to_chat_id,omitempty"` // optional
+	RetryAfter      int   `json:"retry_after,omitempty"`        // optional
 }
 
 // Update is an update response, from GetUpdates.
@@ -53,10 +53,10 @@ func (ch UpdatesChannel) Clear() {
 type User struct {
 	ID           int    `json:"id"`
 	FirstName    string `json:"first_name"`
-	LastName     string `json:"last_name"`     // optional
-	UserName     string `json:"username"`      // optional
-	LanguageCode string `json:"language_code"` // optional
-	IsBot        bool   `json:"is_bot"`        // optional
+	LastName     string `json:"last_name,omitempty"`     // optional
+	UserName     string `json:"username,omitempty"`      // optional
+	LanguageCode string `json:"language_code,omitempty"` // optional
+	IsBot        bool   `json:"is_bot,omitempty"`        // optional
 }
 
 // String displays a simple text version of a user.
@@ -92,11 +92,11 @@ type ChatPhoto struct {
 type Chat struct {
 	ID                  int64      `json:"id"`
 	Type                string     `json:"type"`
-	Title               string     `json:"title"`                          // optional
-	UserName            string     `json:"username"`                       // optional
-	FirstName           string     `json:"first_name"`                     // optional
-	LastName            string     `json:"last_name"`                      // optional
-	AllMembersAreAdmins bool       `json:"all_members_are_administrators"` // optional
+	Title               string     `json:"title,omitempty"`                          // optional
+	UserName            string     `json:"username,omitempty"`                       // optional
+	FirstName           string     `json:"first_name,omitempty"`                     // optional
+	LastName            string     `json:"last_name,omitempty"`                      // optional
+	AllMembersAreAdmins bool       `json:"all_members_are_administrators,omitempty"` // optional
 	Photo               *ChatPhoto `json:"photo"`
 	Description         string     `json:"description,omitempty"` // optional
 	InviteLink          string     `json:"invite_link,omitempty"` // optional
@@ -269,19 +269,19 @@ type PhotoSize struct {
 type Audio struct {
 	FileID    string `json:"file_id"`
 	Duration  int    `json:"duration"`
-	Performer string `json:"performer"` // optional
-	Title     string `json:"title"`     // optional
-	MimeType  string `json:"mime_type"` // optional
-	FileSize  int    `json:"file_size"` // optional
+	Performer string `json:"performer,omitempty"` // optional
+	Title     string `json:"title,omitempty"`     // optional
+	MimeType  string `json:"mime_type,omitempty"` // optional
+	FileSize  int    `json:"file_size,omitempty"` // optional
 }
 
 // Document contains information about a document.
 type Document struct {
 	FileID    string     `json:"file_id"`
-	Thumbnail *PhotoSize `json:"thumb"`     // optional
-	FileName  string     `json:"file_name"` // optional
-	MimeType  string     `json:"mime_type"` // optional
-	FileSize  int        `json:"file_size"` // optional
+	Thumbnail *PhotoSize `json:"thumb,omitempty"`     // optional
+	FileName  string     `json:"file_name,omitempty"` // optional
+	MimeType  string     `json:"mime_type,omitempty"` // optional
+	FileSize  int        `json:"file_size,omitempty"` // optional
 }
 
 // Sticker contains information about a sticker.
@@ -289,10 +289,10 @@ type Sticker struct {
 	FileID    string     `json:"file_id"`
 	Width     int        `json:"width"`
 	Height    int        `json:"height"`
-	Thumbnail *PhotoSize `json:"thumb"`     // optional
-	Emoji     string     `json:"emoji"`     // optional
-	FileSize  int        `json:"file_size"` // optional
-	SetName   string     `json:"set_name"`  // optional
+	Thumbnail *PhotoSize `json:"thumb,omitempty"`     // optional
+	Emoji     string     `json:"emoji,omitempty"`     // optional
+	FileSize  int        `json:"file_size,omitempty"` // optional
+	SetName   string     `json:"set_name,omitempty"`  // optional
 }
 
 // ChatAnimation contains information about an animation.
@@ -301,10 +301,10 @@ type ChatAnimation struct {
 	Width     int        `json:"width"`
 	Height    int        `json:"height"`
 	Duration  int        `json:"duration"`
-	Thumbnail *PhotoSize `json:"thumb"`     // optional
-	FileName  string     `json:"file_name"` // optional
-	MimeType  string     `json:"mime_type"` // optional
-	FileSize  int        `json:"file_size"` // optional
+	Thumbnail *PhotoSize `json:"thumb,omitempty"`     // optional
+	FileName  string     `json:"file_name,omitempty"` // optional
+	MimeType  string     `json:"mime_type,omitempty"` // optional
+	FileSize  int        `json:"file_size,omitempty"` // optional
 }
 
 // Video contains information about a video.
@@ -313,9 +313,9 @@ type Video struct {
 	Width     int        `json:"width"`
 	Height    int        `json:"height"`
 	Duration  int        `json:"duration"`
-	Thumbnail *PhotoSize `json:"thumb"`     // optional
-	MimeType  string     `json:"mime_type"` // optional
-	FileSize  int        `json:"file_size"` // optional
+	Thumbnail *PhotoSize `json:"thumb,omitempty"`     // optional
+	MimeType  string     `json:"mime_type,omitempty"` // optional
+	FileSize  int        `json:"file_size,omitempty"` // optional
 }
 
 // VideoNote contains information about a video.
@@ -323,16 +323,16 @@ type VideoNote struct {
 	FileID    string     `json:"file_id"`
 	Length    int        `json:"length"`
 	Duration  int        `json:"duration"`
-	Thumbnail *PhotoSize `json:"thumb"`     // optional
-	FileSize  int        `json:"file_size"` // optional
+	Thumbnail *PhotoSize `json:"thumb,omitempty"`     // optional
+	FileSize  int        `json:"file_size,omitempty"` // optional
 }
 
 // Voice contains information about a voice.
 type Voice struct {
 	FileID   string `json:"file_id"`
 	Duration int    `json:"duration"`
-	MimeType string `json:"mime_type"` // optional
-	FileSize int    `json:"file_size"` // optional
+	MimeType string `json:"mime_type,omitempty"` // optional
+	FileSize int    `json:"file_size,omitempty"` // optional
 }
 
 // Contact contains information about a contact.
@@ -341,8 +341,8 @@ type Voice struct {
 type Contact struct {
 	PhoneNumber string `json:"phone_number"`
 	FirstName   string `json:"first_name"`
-	LastName    string `json:"last_name"` // optional
-	UserID      int    `json:"user_id"`   // optional
+	LastName    string `json:"last_name,omitempty"` // optional
+	UserID      int    `json:"user_id,omitempty"`   // optional
 }
 
 // Location contains information about a place.
@@ -356,7 +356,7 @@ type Venue struct {
 	Location     Location `json:"location"`
 	Title        string   `json:"title"`
 	Address      string   `json:"address"`
-	FoursquareID string   `json:"foursquare_id"` // optional
+	FoursquareID string   `json:"foursquare_id,omitempty"` // optional
 }
 
 // UserProfilePhotos contains a set of user profile photos.
@@ -368,9 +368,9 @@ type UserProfilePhotos struct {
 // File contains information about a file to download from Telegram.
 type File struct {
 	FileID   string `json:"file_id"`
-	FileSize int    `json:"file_size"` // optional
-	FilePath string `json:"file_path"` // optional
-	Endpoint string `json:"endpoint"`  // optional
+	FileSize int    `json:"file_size,omitempty"` // optional
+	FilePath string `json:"file_path,omitempty"` // optional
+	Endpoint string `json:"endpoint,omitempty"`  // optional
 }
 
 // Link returns a full path to the download URL for a File.
@@ -383,9 +383,9 @@ func (f *File) Link(token string) string {
 // ReplyKeyboardMarkup allows the Bot to set a custom keyboard.
 type ReplyKeyboardMarkup struct {
 	Keyboard        [][]KeyboardButton `json:"keyboard"`
-	ResizeKeyboard  bool               `json:"resize_keyboard"`   // optional
-	OneTimeKeyboard bool               `json:"one_time_keyboard"` // optional
-	Selective       bool               `json:"selective"`         // optional
+	ResizeKeyboard  bool               `json:"resize_keyboard,omitempty"`   // optional
+	OneTimeKeyboard bool               `json:"one_time_keyboard,omitempty"` // optional
+	Selective       bool               `json:"selective,omitempty"`         // optional
 }
 
 // KeyboardButton is a button within a custom keyboard.
@@ -398,7 +398,7 @@ type KeyboardButton struct {
 // ReplyKeyboardHide allows the Bot to hide a custom keyboard.
 type ReplyKeyboardHide struct {
 	HideKeyboard bool `json:"hide_keyboard"`
-	Selective    bool `json:"selective"` // optional
+	Selective    bool `json:"selective,omitempty"` // optional
 }
 
 // ReplyKeyboardRemove allows the Bot to hide a custom keyboard.
@@ -434,18 +434,18 @@ type InlineKeyboardButton struct {
 type CallbackQuery struct {
 	ID              string   `json:"id"`
 	From            *User    `json:"from"`
-	Message         *Message `json:"message"`           // optional
-	InlineMessageID string   `json:"inline_message_id"` // optional
+	Message         *Message `json:"message,omitempty"`           // optional
+	InlineMessageID string   `json:"inline_message_id,omitempty"` // optional
 	ChatInstance    string   `json:"chat_instance"`
-	Data            string   `json:"data"`            // optional
-	GameShortName   string   `json:"game_short_name"` // optional
+	Data            string   `json:"data,omitempty"`            // optional
+	GameShortName   string   `json:"game_short_name,omitempty"` // optional
 }
 
 // ForceReply allows the Bot to have users directly reply to it without
 // additional interaction.
 type ForceReply struct {
 	ForceReply bool `json:"force_reply"`
-	Selective  bool `json:"selective"` // optional
+	Selective  bool `json:"selective,omitempty"` // optional
 }
 
 // ChatMember is information about a member in a chat.
@@ -517,8 +517,8 @@ type WebhookInfo struct {
 	URL                  string `json:"url"`
 	HasCustomCertificate bool   `json:"has_custom_certificate"`
 	PendingUpdateCount   int    `json:"pending_update_count"`
-	LastErrorDate        int    `json:"last_error_date"`    // optional
-	LastErrorMessage     string `json:"last_error_message"` // optional
+	LastErrorDate        int    `json:"last_error_date,omitempty"`    // optional
+	LastErrorMessage     string `json:"last_error_message,omitempty"` // optional
 }
 
 // IsSet returns true if a webhook is currently set.
