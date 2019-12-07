@@ -853,6 +853,7 @@ type ShippingAddress struct {
 
 // OrderInfo represents information about an order.
 type OrderInfo struct {
+	UserId          int              `json:"user_id,omitempty"`
 	Name            string           `json:"name,omitempty"`
 	PhoneNumber     string           `json:"phone_number,omitempty"`
 	Email           string           `json:"email,omitempty"`
