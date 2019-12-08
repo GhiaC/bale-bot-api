@@ -56,7 +56,7 @@ type User struct {
 	LastName     string `json:"last_name,omitempty"`     // optional
 	UserName     string `json:"username,omitempty"`      // optional
 	LanguageCode string `json:"language_code,omitempty"` // optional
-	IsBot        bool   `json:"is_bot,omitempty"`        // optional
+	IsBot        bool   `json:"is_bot"`
 }
 
 // String displays a simple text version of a user.
